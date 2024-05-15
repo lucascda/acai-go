@@ -1,0 +1,5 @@
+# rabbitmq
+rabbitmq-data
+
+# env files
+.env
