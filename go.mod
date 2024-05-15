@@ -1,4 +1,4 @@
-module github.com/lucas_cda/acai-go
+module github.com/lucas_cda/go-todo-microservices
 
 go 1.22.1
 

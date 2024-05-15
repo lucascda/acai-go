@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/lucas_cda/acai-go/common"
+	"github.com/lucas_cda/go-todo-microservices/common"
 )
 
 func main() {
