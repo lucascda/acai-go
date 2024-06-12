@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"log"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )
@@ -25,6 +26,14 @@ func NewRabbitMQClient(conn *amqp.Connection) (RabbitClient, error) {
 		conn: conn,
 		ch:   ch,
 	}, nil
+}
+
+func (rc RabbitClient) CreateExchange(name string, kind string) error {
+	err := rc.ch.ExchangeDeclare(name, kind, true, false, false, false, amqp.Table{})
+	if err != nil {
+		log.Fatalf("Error while creatint exchange %s", name)
+	}
+	return err
 
 }
 

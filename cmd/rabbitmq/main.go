@@ -29,13 +29,19 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
+	log.Print("Succesfully connect to RabbitMQ")
 
 	client, err := common.NewRabbitMQClient(conn)
 	if err != nil {
 		panic(err)
 	}
 	defer client.Close()
+	log.Print("Succesfully RabbitMQ client")
 
-	log.Println(client)
+	err = client.CreateExchange("auth_events", "direct")
+	if err != nil {
+		panic(err)
+	}
+	log.Print("Succesfully created exchange")
 
 }
