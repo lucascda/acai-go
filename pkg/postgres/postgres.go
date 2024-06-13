@@ -24,8 +24,12 @@ func NewPostgresDB(url string) (*postgres, error) {
 	return pg, nil
 }
 
-func (p *postgres) GetDB() *pgxpool.Pool {
-	return p.db
+func (p *postgres) GetDB() (*pgxpool.Conn, error) {
+	conn, err := p.db.Acquire(context.Background())
+	if err != nil {
+		log.Fatal("Cant get conn from connection poll")
+	}
+	return conn, nil
 }
 
 func (p *postgres) Close() {
