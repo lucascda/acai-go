@@ -1,6 +1,7 @@
 package common
 
 import (
+	"context"
 	"fmt"
 	"log"
 
@@ -45,6 +46,14 @@ func (rc RabbitClient) CreateBinding(queue_name, key, exchange string) error {
 	err := rc.ch.QueueBind(queue_name, key, exchange, false, nil)
 	if err != nil {
 		log.Fatalf("Error while binding queue %s to exchange %s", queue_name, exchange)
+	}
+	return err
+}
+
+func (rc RabbitClient) Publish(ctx context.Context, exchange, key string, options amqp.Publishing) error {
+	err := rc.ch.PublishWithContext(ctx, exchange, key, true, false, options)
+	if err != nil {
+		log.Printf("Error publishing msg")
 	}
 	return err
 }

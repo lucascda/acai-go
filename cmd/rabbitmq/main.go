@@ -1,11 +1,13 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/lucas_cda/go-todo-microservices/common"
+	"github.com/rabbitmq/amqp091-go"
 )
 
 func main() {
@@ -53,4 +55,12 @@ func main() {
 		panic(err)
 	}
 	log.Print("Succesfully created binding")
+
+	ctx := context.Background()
+
+	client.Publish(ctx, "auth_events", "auth.signup", amqp091.Publishing{
+		ContentType:  "text/plain",
+		DeliveryMode: amqp091.Persistent,
+		Body:         []byte("Hello from auth signup"),
+	})
 }
