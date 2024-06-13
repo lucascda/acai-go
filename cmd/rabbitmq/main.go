@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/lucas_cda/go-todo-microservices/common"
+	"github.com/lucas_cda/go-acai-microservices/common"
 	"github.com/rabbitmq/amqp091-go"
 )
 

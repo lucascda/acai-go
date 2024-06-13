@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lucas_cda/go-todo-microservices/auth"
+	"github.com/lucas_cda/go-acai-microservices/auth"
 )
 
 func main() {
