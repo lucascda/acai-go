@@ -34,7 +34,19 @@ func (rc RabbitClient) CreateExchange(name string, kind string) error {
 		log.Fatalf("Error while creatint exchange %s", name)
 	}
 	return err
+}
 
+func (rc RabbitClient) CreateQueue(name string) error {
+	_, err := rc.ch.QueueDeclare(name, true, false, false, false, nil)
+	return err
+}
+
+func (rc RabbitClient) CreateBinding(queue_name, key, exchange string) error {
+	err := rc.ch.QueueBind(queue_name, key, exchange, false, nil)
+	if err != nil {
+		log.Fatalf("Error while binding queue %s to exchange %s", queue_name, exchange)
+	}
+	return err
 }
 
 func (rc RabbitClient) Close() error {

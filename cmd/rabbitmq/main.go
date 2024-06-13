@@ -44,4 +44,13 @@ func main() {
 	}
 	log.Print("Succesfully created exchange")
 
+	if err = client.CreateQueue("auth_signup"); err != nil {
+		panic(err)
+	}
+	log.Print("Succesfully created queue")
+
+	if err = client.CreateBinding("auth_signup", "auth.signup", "auth_events"); err != nil {
+		panic(err)
+	}
+	log.Print("Succesfully created binding")
 }
