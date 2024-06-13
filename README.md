@@ -1,8 +1,8 @@
-# Go Microservices Todo App 
+# Go Microservices Açaí Shop
 
 ## Introduction
 
-This project is a Go Monorepo implementing a TODO app with microservices architecture. 
+This project is a Go Monorepo implementing a açaí shop api  with microservices architecture. 
 
 TODO
 
